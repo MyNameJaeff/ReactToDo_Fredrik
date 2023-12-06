@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+</head>
+
+<body>
+    <script>
+        var names = [
+            "Andrew",
+            "Peter",
+            "Eliza",
+            "Kirsten",
+            "Jeanette"
+        ];
+        var versaler = names.map((name) => {
+            return name.toUpperCase();
+        });
+        console.log(versaler);
+
+        var triangles = [
+            { width: 12, height: 22 },
+            { width: 21, height: 12 },
+            { width: 35, height: 49 },
+            { width: 12, height: 50 },
+            { width: 20, height: 35 }
+        ];
+        var areas = triangles.map((triangle) => {
+            return (triangle.width * triangle.height) / 2;
+        });
+        console.log(areas);
+
+        var movies = [
+            { title: "Batman Begins", year: 2005 },
+            { title: "Batman", year: 1989 },
+            { title: "Batman Returns", year: 1992 },
+            { title: "Batman Forever", year: 1995 },
+            { title: "Batman & Robin", year: 1997 },
+            { title: "Batman: Under the Red Hood", year: 2010 },
+            { title: "Batman: The Dark Knight Returns, Part 1", year: 2012 },
+            { title: "Batman: Mask of the Phantasm", year: 1993 },
+            { title: "Batman: The Movie", year: 1966 },
+            { title: "Batman: The Dark Knight Returns, Part 2", year: 2013 }
+        ];
+        var between90_20 = movies.filter((movie) => {
+            return movie.year >= 1990 && movie.year <= 2000;
+        });
+        console.log(between90_20);
+
+        var after2000 = movies
+        .filter((movie) => {
+            return movie.year >= 2000;
+        })
+        .map((movie) => {
+            return movie.title;
+        });
+        console.log(after2000);
+
+        var data = {
+            title: "ToDo List",
+            tasks: [
+                { id: 101, complete: false, priority: "High", title: "Do something" },
+                { id: 102, complete: false, priority: "Medium", title: "Do something else" },
+                { id: 103, complete: true, priority: "Low", title: "Fix the foo" },
+                { id: 104, complete: false, priority: "High", title: "Adjust the bar" },
+                { id: 105, complete: true, priority: "High", title: "Fetch the baz" },
+                { id: 106, complete: false, priority: "Medium", title: "Clean the apartment" },
+                { id: 107, complete: false, priority: "Low", title: "Refactor my code" },
+                { id: 108, complete: true, priority: "High", title: "Finish the second assignment" }
+            ]
+        };
+        var doneAndHigh = data.tasks
+        .filter((task) => {
+            return task.complete && task.priority === "High";
+        })
+        .map((task) => {
+            return task.id;
+        });
+        console.log(doneAndHigh);
+
+        var unfinishedAndNotLow = data.tasks
+        .filter((task) => {
+            return !task.complete && task.priority !== "Low";
+        })
+        .map((task) => {
+            return task.title + " (" + task.id + ")";
+        });
+        console.log(unfinishedAndNotLow);
+    </script>
+</body>
+
+</html>

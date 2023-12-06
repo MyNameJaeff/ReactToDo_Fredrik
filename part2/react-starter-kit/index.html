@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>React-starter-kit</title>
+    <meta charset="utf-8">
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    <!-- Rot-elementet för vår React-applikation -->
+    <div id="root"></div>
+
+    <!--
+            Inkludera vår data (musikalbums),
+            denna kommer vara sparad i variabeln "albums".
+        -->
+    <script src="js/albums.js"></script>
+    <script type="text/babel">
+        // Ta en titt i webbkonsollen på den data vi har att tillgå 
+        var Album = React.createClass({
+            render: function () {
+                return (
+                    <div className="album">
+                        <h2>{this.props.album.name}</h2>
+                        <a href={this.props.album.href}>Spotify link</a>
+                        <br />
+                        <img src={this.props.album.image.url} alt="" />
+                        <br />
+                        <button onClick={this.props.onClick} type="button">Remove</button>
+                    </div>
+                )
+            }
+        });
+
+        var Albums = React.createClass({
+            getInitialState: function () {
+                // Notera att variabeln "albums" kommer från
+                // vår fil `js/albums.js`
+                return {
+                    albums: albums
+                };
+            },
+            handleClick: function (index) {
+                // Radera ett album från listan
+                this.state.albums.splice(index, 1);
+                // Uppdatera tillståndet med albumen igen
+                this.setState({
+                    albums: this.state.albums
+                });
+            },
+            render: function () {
+                // Om vi vill skicka med funktionen handleClick, som ska radera
+                // ett album från listan behöver vi dels ange `this` som det
+                // andra argumentet i vår "map" metod, samt ange 
+                // `this.handleClick.bind(this, index)` för att göra så att vår
+                // klick-metod har tillgång till vårt tillstånd samt index för
+                // vilket album som blev klickat - så vi vet vilket vi vill radera
+                return (
+                    <div className="albums">
+                        {this.state.albums.map(function (album, index) {
+                            return (
+                                <Album
+                                    album={album}
+                                    onClick={this.handleClick.bind(this, index)} />
+                            )
+                        }, this)}
+                    </div>
+                )
+            }
+        });
+
+        // Rendera vårt innehåll
+        ReactDOM.render(
+            <Albums />,
+            document.getElementById("root")
+        );
+
+
+    </script>
+</body>
+
+</html>
