@@ -9,31 +9,31 @@
 
 <body>
     <script>
-        var names = [
+        let names = [
             "Andrew",
             "Peter",
             "Eliza",
             "Kirsten",
             "Jeanette"
         ];
-        var versaler = names.map((name) => {
+        let versaler = names.map((name) => {
             return name.toUpperCase();
         });
         console.log(versaler);
 
-        var triangles = [
+        let triangles = [
             { width: 12, height: 22 },
             { width: 21, height: 12 },
             { width: 35, height: 49 },
             { width: 12, height: 50 },
             { width: 20, height: 35 }
         ];
-        var areas = triangles.map((triangle) => {
-            return (triangle.width * triangle.height) / 2;
+        let areas = triangles.map((triangle) => {
+            return triangle.area = ((triangle.width * triangle.height) / 2);
         });
         console.log(areas);
 
-        var movies = [
+        let movies = [
             { title: "Batman Begins", year: 2005 },
             { title: "Batman", year: 1989 },
             { title: "Batman Returns", year: 1992 },
@@ -45,12 +45,12 @@
             { title: "Batman: The Movie", year: 1966 },
             { title: "Batman: The Dark Knight Returns, Part 2", year: 2013 }
         ];
-        var between90_20 = movies.filter((movie) => {
+        let between90_20 = movies.filter((movie) => {
             return movie.year >= 1990 && movie.year <= 2000;
-        });
+        })
         console.log(between90_20);
 
-        var after2000 = movies
+        let after2000 = movies
         .filter((movie) => {
             return movie.year >= 2000;
         })
@@ -59,7 +59,7 @@
         });
         console.log(after2000);
 
-        var data = {
+        let data = {
             title: "ToDo List",
             tasks: [
                 { id: 101, complete: false, priority: "High", title: "Do something" },
@@ -72,7 +72,7 @@
                 { id: 108, complete: true, priority: "High", title: "Finish the second assignment" }
             ]
         };
-        var doneAndHigh = data.tasks
+        let doneAndHigh = data.tasks
         .filter((task) => {
             return task.complete && task.priority === "High";
         })
@@ -81,7 +81,7 @@
         });
         console.log(doneAndHigh);
 
-        var unfinishedAndNotLow = data.tasks
+        let unfinishedAndNotLow = data.tasks
         .filter((task) => {
             return !task.complete && task.priority !== "Low";
         })
